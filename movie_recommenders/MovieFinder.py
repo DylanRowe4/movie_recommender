@@ -12,12 +12,6 @@ from sklearn.metrics.pairwise import cosine_similarity
 from sentence_transformers import SentenceTransformer, util
 from sklearn.feature_extraction.text import TfidfVectorizer, ENGLISH_STOP_WORDS
 
-#load our huggingface information
-with open('../langchain/keys/hf.json', 'r') as rd_f:
-    data = json.load(rd_f)
-    
-os.environ['HUGGINGFACEHUB_API_TOKEN'] = data['HUGGINGFACEHUB_API_TOKEN']
-
 class MovieRecommender:
     def __init__(self, path='./'):
         #load variables needed for searching
@@ -67,7 +61,7 @@ class MovieRecommender:
         """
         Load model for embedding movie overview.
         """
-        #load model from sentence transformers into HuggingFaceEmbeddings
+        #load model from sentence transformers
         model = SentenceTransformer('all-mpnet-base-v2')
         return model
     
